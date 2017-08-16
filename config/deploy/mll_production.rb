@@ -1,5 +1,5 @@
 set :branch, "mll_prod"
-set :domain, "52.172.26.245"
+set :domain, "192.168.1.4"
 
 set :application, "shipx"
 set :deploy_to, "/data/shipx"
@@ -11,9 +11,9 @@ set :rvm_custom_path, '/usr/share/rvm'
 set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 
 set :rails_env, "production"
-role :app, %w{shipx@52.172.26.245}
-role :web, %w{shipx@52.172.26.245}
-role :db,  %w{shipx@52.172.26.245}, :primary => true
+role :app, %w{shipx@192.168.1.4 shipx@192.168.1.5 shipx@192.168.1.36}
+role :web, %w{shipx@192.168.1.4 shipx@192.168.1.5 192.168.1.36}
+role :db,  %w{shipx@192.168.1.4}, :primary => true
 
 namespace :symlink do
   task :specific do
@@ -26,7 +26,6 @@ namespace :symlink do
 end
 
 before 'symlink:defaults', "symlink:specific"
-
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
