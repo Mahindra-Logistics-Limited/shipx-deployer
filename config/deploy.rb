@@ -59,21 +59,21 @@ end
 namespace :deploy do
   desc "Restart Application"
   task :restart do
-    on roles(:app) do
+    on roles(:web) do
       execute "touch #{current_path}/tmp/restart.txt"
     end
   end
 
   desc "Start Application"
   task :start do
-    on roles(:app) do
+    on roles(:web) do
       #do nothing
     end
   end
 
   desc "Stop Application"
   task :stop do
-    on roles(:app) do
+    on roles(:web) do
       #do nothing
     end
   end

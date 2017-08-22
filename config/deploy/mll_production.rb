@@ -11,13 +11,13 @@ set :rvm_custom_path, '/usr/share/rvm'
 set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 
 set :rails_env, "production"
-role :app, %w{shipx@192.168.1.4 shipx@192.168.1.5 shipx@192.168.1.36}
-role :web, %w{shipx@192.168.1.4 shipx@192.168.1.5 192.168.1.36}
+role :web, %w{shipx@192.168.1.4}
+role :app, %w{shipx@192.168.1.36}
 role :db,  %w{shipx@192.168.1.4}, :primary => true
 
 namespace :symlink do
-  task :specific do
-    on roles(:app, :db) do
+  task :assets_workaround do
+    on roles(:web) do
       #hack for assets
       execute "rm -R #{release_path}/public/assets"
       execute "ln -s #{deploy_to}/assets #{release_path}/public/assets"
@@ -25,7 +25,7 @@ namespace :symlink do
   end
 end
 
-before 'symlink:defaults', "symlink:specific"
+before 'symlink:defaults', "symlink:assets_workaround"
 # server-based syntax
 # ======================
 # Defines a single server with a list of roles and multiple properties.
