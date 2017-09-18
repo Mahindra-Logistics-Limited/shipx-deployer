@@ -16,7 +16,7 @@ set :keep_releases, 10
 namespace :symlink do
   desc "Symlinks yml files from shared to new release folder"
   task :defaults do
-    on roles(:app, :db) do 
+    on roles(:app, :web) do 
     # new directories
       execute "mkdir -p #{release_path}/misc/"
       execute "mkdir -p #{release_path}/public/flash"

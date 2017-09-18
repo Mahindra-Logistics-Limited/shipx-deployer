@@ -13,7 +13,7 @@ set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 set :rails_env, "production"
 role :web, %w{shipx@192.168.1.4}
 role :app, %w{shipx@192.168.1.36}
-role :db,  %w{shipx@192.168.1.4}, :primary => true
+role :db,  %w{shipx@192.168.1.36}, primary: true
 
 namespace :symlink do
   task :assets_workaround do
