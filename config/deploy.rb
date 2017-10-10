@@ -20,6 +20,9 @@ namespace :symlink do
     # new directories
       execute "mkdir -p #{release_path}/misc/"
       execute "mkdir -p #{release_path}/public/flash"
+      execute "ln -s #{shared_path}/system #{release_path}/public/system"
+      execute "ln -s #{shared_path}/log #{release_path}/log"
+
   
       # Main configuration files
       execute "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
