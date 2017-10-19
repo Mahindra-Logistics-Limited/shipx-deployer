@@ -1,8 +1,8 @@
 set :branch, "mll_prod"
-set :domain, "10.175.16.68"
+set :domain, "192.168.2.36"
 
-set :application, "shipx"
-set :deploy_to, "/data/shipx"
+set :application, "shipx_pre_prod"
+set :deploy_to, "/data/shipx_pre_prod"
 
 set :rvm_type, :system
 set :rvm_ruby_version, "ruby-1.9.3-p547"
@@ -10,10 +10,10 @@ set :rvm_custom_path, '/usr/share/rvm'
 
 set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 
-set :rails_env, "production"
-role :web, %w{shipx@10.175.16.68}
-role :app, %w{shipx@10.175.17.4}
-role :db,  %w{shipx@10.175.17.4}, primary: true
+set :rails_env, "staging"
+role :web, %w{shipx@192.168.2.36}
+role :app, %w{shipx@192.168.2.36}
+role :db,  %w{shipx@192.168.2.36}, primary: true
 
 namespace :symlink do
   task :assets_workaround do
