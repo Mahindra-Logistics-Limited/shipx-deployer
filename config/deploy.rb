@@ -24,6 +24,9 @@ namespace :symlink do
       execute "ln -s #{shared_path}/system #{release_path}/public/system"
       execute "ln -s #{shared_path}/log #{release_path}/log"
 
+      execute "mkdir -p #{shared_path}/pids"
+      execute "mkdir -p #{release_path}/tmp"
+      execute "ln -s #{shared_path}/pids #{release_path}/tmp/pids"
   
       # Main configuration files
       execute "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
@@ -90,35 +93,6 @@ namespace :deploy do
     end
   end
 end
-
-namespace :delayed_job do
-  desc "Start delayed_job process"
-  task :start do
-    on roles(:app) do
-    threads = fetch(:delayed_threads, 1)
-    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads} start"
-    end
-  end
-  
-  desc "Stop delayed_job process"
-  task :stop do
-    on roles(:app) do
-      threads = fetch(:delayed_threads, 1)
-      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads.to_i + 10} stop"
-    end
-  end
-
-  desc "Restart delayed_job process"
-  task :restart do
-    on roles(:app) do
-      threads = fetch(:delayed_threads, 1)
-      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads.to_i + 10} stop"
-      execute "sleep 5"
-      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads} start"
-    end
-  end
-end
-
 
 before 'bundler:install', "symlink:defaults"
 after 'bundler:install', 'deploy:update_crontab'
