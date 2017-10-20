@@ -14,6 +14,10 @@ set :rails_assets_groups, 'assets'
 set :keep_releases, 10
 set :delayed_threads, 1
 
+set :whenever_variables,   ->{ "environment=#{fetch :rails_env}" }
+set :whenever_identifier,  ->{ fetch :application }
+
+
 namespace :symlink do
   desc "Symlinks yml files from shared to new release folder"
   task :defaults do
@@ -84,18 +88,10 @@ namespace :deploy do
       #do nothing
     end
   end
-
-  desc "Update the crontab file"
-  task :update_crontab do 
-    on roles(:app) do
-      rails_env = fetch(:rails_env, "development")
-      #execute "cd #{release_path} && bundle exec whenever --update-crontab #{application} --set environment=#{rails_env}"
-    end
-  end
 end
 
 before 'bundler:install', "symlink:defaults"
-after 'bundler:install', 'deploy:update_crontab'
+after 'bundler:install', 'whenever:update_crontab'
 
 after 'deploy:published', 'deploy:restart'
 
