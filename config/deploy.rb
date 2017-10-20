@@ -91,10 +91,12 @@ namespace :deploy do
 end
 
 before 'bundler:install', "symlink:defaults"
-after 'bundler:install', 'whenever:update_crontab'
+
+after "deploy:updated",  "whenever:update_crontab"
+after "deploy:reverted", "whenever:update_crontab"
 
 after 'deploy:published', 'deploy:restart'
 
-after "deploy:start", "delayed_job:start"
 after "deploy:restart", "delayed_job:restart"
+after "deploy:start", "delayed_job:start"
 after "deploy:stop", "delayed_job:stop"
