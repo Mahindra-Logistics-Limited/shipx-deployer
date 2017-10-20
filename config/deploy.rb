@@ -12,6 +12,7 @@ set :rvm_ruby_version, 'ruby-1.9.3-p547'      # Defaults to: 'default'
 set :rails_assets_groups, 'assets'
 
 set :keep_releases, 10
+set :delayed_threads, 1
 
 namespace :symlink do
   desc "Symlinks yml files from shared to new release folder"
@@ -94,23 +95,26 @@ namespace :delayed_job do
   desc "Start delayed_job process"
   task :start do
     on roles(:app) do
-#    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n 1 start"
+    threads = fetch(:delayed_threads, 1)
+    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads} start"
     end
   end
   
   desc "Stop delayed_job process"
   task :stop do
     on roles(:app) do
-#    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n 1 stop"
+      threads = fetch(:delayed_threads, 1)
+      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads.to_i + 10} stop"
     end
   end
 
   desc "Restart delayed_job process"
   task :restart do
     on roles(:app) do
-#    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n 1 stop"
-#    execute "sleep 5"
-#    execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n 1 start"
+      threads = fetch(:delayed_threads, 1)
+      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads.to_i + 10} stop"
+      execute "sleep 5"
+      execute "cd #{current_path}; RAILS_ENV=#{rails_env} bundle exec script/delayed_job -n #{threads} start"
     end
   end
 end
