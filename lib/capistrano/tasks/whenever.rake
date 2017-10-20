@@ -16,7 +16,7 @@ namespace :whenever do
     on roles(:app) do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :whenever, "--clear-crontab #{fetch :whenever_identifier}""
+          execute :bundle, :exec, :whenever, "--clear-crontab #{fetch :whenever_identifier}"
         end
       end
     end
