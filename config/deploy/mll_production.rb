@@ -26,4 +26,16 @@ namespace :symlink do
   end
 end
 
+namespace :symlink do
+  task :pids_workaround do
+    on roles(:web, :app) do
+      #hack for pids
+      execute "rm -R #{release_path}/tmp/pids"
+      execute "mkdir -p #{deploy_to}/pids"
+      execute "ln -s #{deploy_to}/pids #{release_path}/tmp/pids"
+    end
+  end
+end
+
 before 'symlink:defaults', "symlink:assets_workaround"
+after  'symlink:defaults', "symlink:pids_workaround"
