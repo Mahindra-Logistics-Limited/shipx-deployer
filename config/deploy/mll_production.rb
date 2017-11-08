@@ -33,6 +33,10 @@ namespace :symlink do
       execute "rm -R #{release_path}/tmp/pids"
       execute "mkdir -p #{deploy_to}/pids"
       execute "ln -s #{deploy_to}/pids #{release_path}/tmp/pids"
+
+      execute "rm #{release_path}/log"
+      execute "mkdir -p #{deploy_to}/log"
+      execute "ln -s #{deploy_to}/log #{release_path}/log"
     end
   end
 end
