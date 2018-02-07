@@ -38,6 +38,7 @@ namespace :symlink do
       execute "ln -s #{shared_path}/sms.yml #{release_path}/config/sms.yml"
       execute "ln -s #{shared_path}/sms_params.yml #{release_path}/config/sms_params.yml"
       execute "ln -s #{shared_path}/gps_params.yml #{release_path}/config/gps_params.yml"
+      execute "ln -s #{shared_path}/company_google_api_key.yml #{release_path}/config/company_google_api_key.yml"
       execute "ln -s #{shared_path}/auto_track_params.yml #{release_path}/config/auto_track_params.yml"
       execute "ln -s #{shared_path}/extensions.yml #{release_path}/config/extensions.yml"
       execute "ln -s #{shared_path}/theme_extensions.yml #{release_path}/config/theme_extensions.yml"
@@ -62,6 +63,7 @@ namespace :symlink do
       execute "ln -s #{shared_path}/custom_templates #{release_path}/app/custom_templates"
       execute "ln -s #{shared_path}/custom_template_views #{release_path}/app/views/custom_template_views"
       execute "ln -s #{shared_path}/custom_extensions #{release_path}/app/custom_extensions"
+      execute "ln -s #{shared_path}/custom_menu.yaml #{release_path}/config/custom_menu.yaml"
     end
   end
 
