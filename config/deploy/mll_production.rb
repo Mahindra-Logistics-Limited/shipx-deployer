@@ -12,7 +12,7 @@ set :delayed_threads, 4
 set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 
 set :rails_env, "production"
-role :web, %w{shipx@10.175.16.68 shipx@10.175.20.68}
+role :web, %w{shipx@10.175.16.76 shipx@10.175.20.68 shipx@10.175.16.75}
 role :app, %w{shipx@10.175.17.4}
 role :db,  %w{shipx@10.175.17.4}, primary: true
 
