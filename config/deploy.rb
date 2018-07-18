@@ -17,6 +17,7 @@ set :delayed_threads, 1
 set :whenever_variables,   ->{ "environment=#{fetch :rails_env}" }
 set :whenever_identifier,  ->{ fetch :application }
 
+set :bundle_without,  [:development]
 
 namespace :symlink do
   desc "Symlinks yml files from shared to new release folder"
