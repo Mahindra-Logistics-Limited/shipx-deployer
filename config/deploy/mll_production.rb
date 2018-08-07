@@ -1,13 +1,13 @@
-set :branch, "mll_prod"
+set :branch, "mll_deploy"
 set :domain, "10.175.16.68"
 
 set :application, "shipx"
-set :deploy_to, "/data/shipx"
+set :deploy_to, "/shared/shipx2/app"
 
 set :rvm_type, :system
-set :rvm_ruby_version, "ruby-1.9.3-p547"
+set :rvm_ruby_version, "ruby-2.3.7"
 set :rvm_custom_path, '/usr/share/rvm'
-set :delayed_threads, 4
+set :delayed_threads, 7
 
 set :bundle_path, lambda { File.join(deploy_to, "bundle") }
 

@@ -1,11 +1,11 @@
-set :branch, "mll"
+set :branch, "ruby2-dev"
 set :domain, "10.175.20.69"
 
 set :application, "shipx_test"
-set :deploy_to, "/data/shipx_test"
+set :deploy_to, "/data/shipx_test2"
 
 set :rvm_type, :system
-set :rvm_ruby_version, "ruby-1.9.3-p547"
+set :rvm_ruby_version, "ruby-2.3.7"
 set :rvm_custom_path, '/usr/share/rvm'
 set :delayed_threads, 2
 
