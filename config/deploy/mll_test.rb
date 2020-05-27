@@ -1,4 +1,4 @@
-set :branch, "ruby2-dev"
+set :branch, "mll_test"
 set :domain, "10.175.20.69"
 
 set :application, "shipx_test"

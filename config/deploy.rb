@@ -37,6 +37,7 @@ namespace :symlink do
       execute "ln -s #{shared_path}/database.yml #{release_path}/config/database.yml"
       execute "ln -s #{shared_path}/mailer.yml #{release_path}/config/mailer.yml"
       execute "ln -s #{shared_path}/sms.yml #{release_path}/config/sms.yml"
+      execute "ln -s #{shared_path}/cache.yml #{release_path}/config/cache.yml"
       execute "ln -s #{shared_path}/sms_params.yml #{release_path}/config/sms_params.yml"
       execute "ln -s #{shared_path}/gps_params.yml #{release_path}/config/gps_params.yml"
       execute "ln -s #{shared_path}/company_google_api_key.yml #{release_path}/config/company_google_api_key.yml"
@@ -65,6 +66,7 @@ namespace :symlink do
       execute "ln -s #{shared_path}/custom_template_views #{release_path}/app/views/custom_template_views"
       execute "ln -s #{shared_path}/custom_extensions #{release_path}/app/custom_extensions"
       execute "ln -s #{shared_path}/custom_menu.yaml #{release_path}/config/custom_menu.yaml"
+      execute "ln -sf #{shared_path}/geokit_keys.rb #{release_path}/config/initializers/geokit_keys.rb"
     end
   end
 
