@@ -40,11 +40,14 @@ namespace :symlink do
       execute "ln -s #{shared_path}/cache.yml #{release_path}/config/cache.yml"
       execute "ln -s #{shared_path}/sms_params.yml #{release_path}/config/sms_params.yml"
       execute "ln -s #{shared_path}/gps_params.yml #{release_path}/config/gps_params.yml"
+      execute "ln -s #{shared_path}/e_invoice_params.yml #{release_path}/config/e_invoice_params.yml"
       execute "ln -s #{shared_path}/company_google_api_key.yml #{release_path}/config/company_google_api_key.yml"
       execute "ln -s #{shared_path}/auto_track_params.yml #{release_path}/config/auto_track_params.yml"
       execute "ln -s #{shared_path}/extensions.yml #{release_path}/config/extensions.yml"
       execute "ln -s #{shared_path}/theme_extensions.yml #{release_path}/config/theme_extensions.yml"
+      execute "ln -s #{shared_path}/extended #{release_path}/config/extended"
       execute "ln -s #{shared_path}/.ruby-version #{release_path}/.ruby-version"
+      execute "ln -s #{shared_path}/eway_bill_gsp.yml #{release_path}/config/eway_bill_gsp.yml"
   
       # shared folders
       execute "ln -s #{shared_path}/documents #{release_path}/public/documents"
