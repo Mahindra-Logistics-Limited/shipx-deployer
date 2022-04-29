@@ -43,11 +43,13 @@ namespace :symlink do
       execute "ln -s #{shared_path}/e_invoice_params.yml #{release_path}/config/e_invoice_params.yml"
       execute "ln -s #{shared_path}/company_google_api_key.yml #{release_path}/config/company_google_api_key.yml"
       execute "ln -s #{shared_path}/auto_track_params.yml #{release_path}/config/auto_track_params.yml"
+      execute "ln -s #{shared_path}/route_planning_params.yml #{release_path}/config/route_planning_params.yml"
       execute "ln -s #{shared_path}/extensions.yml #{release_path}/config/extensions.yml"
       execute "ln -s #{shared_path}/theme_extensions.yml #{release_path}/config/theme_extensions.yml"
       execute "ln -s #{shared_path}/extended #{release_path}/config/extended"
       execute "ln -s #{shared_path}/.ruby-version #{release_path}/.ruby-version"
       execute "ln -s #{shared_path}/eway_bill_gsp.yml #{release_path}/config/eway_bill_gsp.yml"
+      execute "ln -s #{shared_path}/ptl_gps_params.yml #{release_path}/config/ptl_gps_params.yml"
   
       # shared folders
       execute "ln -s #{shared_path}/documents #{release_path}/public/documents"
@@ -58,6 +60,7 @@ namespace :symlink do
       # for file uploads
       execute "ln -s #{shared_path}/file_uploaded #{release_path}/misc/file_uploaded"
       execute "ln -s #{shared_path}/file_upload_error #{release_path}/public/file_upload_error"
+      execute "ln -s #{shared_path}/report_attachments #{release_path}/public/report_attachments"
   
       # for apks
       execute "ln -s #{shared_path}/apks #{release_path}/public/apks"
