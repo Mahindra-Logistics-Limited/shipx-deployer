@@ -73,6 +73,11 @@ namespace :symlink do
       execute "ln -s #{shared_path}/custom_extensions #{release_path}/app/custom_extensions"
       execute "ln -s #{shared_path}/custom_menu.yaml #{release_path}/config/custom_menu.yaml"
       execute "ln -sf #{shared_path}/geokit_keys.rb #{release_path}/config/initializers/geokit_keys.rb"
+
+      #for monkey patches
+      execute "ln -s #{shared_path}/patches #{release_path}/patches"
+
+
     end
   end
 
